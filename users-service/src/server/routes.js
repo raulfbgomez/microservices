@@ -31,6 +31,16 @@ const setupRoutes = app => {
     }
   })
 
+  app.get('/sessions/:sessionId', async (req, res, next) => {
+    try {
+      const userSession = await UserSession.findByPk(req.params.sessionId)
+      if (!userSession) return next(new Error('Invalid session ID'))
+      return res.json(userSession)
+    } catch (error) {
+      return next(error)
+    }
+  })
+
   app.post('/users', async (req, res, next) => {
     if (!req.body.email || !req.body.password) {
       return next(new Error('Invalid body!'))
@@ -43,6 +53,18 @@ const setupRoutes = app => {
       })
       return res.json(newUser)
     } catch(error) {
+      return next(error)
+    }
+  })
+
+  app.get('/users/:userId', async (req, res, next) => {
+    try {
+      const user = await User.findByPk(req.params.userId)
+      if (!user) {
+        return next(new Error('Invalid user ID'))
+      }
+      return res.json(user)
+    } catch (error) {
       return next(error)
     }
   })

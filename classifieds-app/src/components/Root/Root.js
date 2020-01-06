@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import Login from './Login'
+
 const Wrapper = styled.div`
   box-sizing: border-box;
   height: 100%;
@@ -24,12 +26,14 @@ const Sidebar = styled.div`
 `
 
 const Root = () => {
-  return <Wrapper>
-    <Container>
-      <Content>asdfdsa</Content>
-      <Sidebar>fdsafsad</Sidebar>
-    </Container>
-  </Wrapper>
+  return (
+    <Wrapper>
+      <Container>
+        <Content>asdfdsa</Content>
+        <Sidebar><Login /></Sidebar>
+      </Container>
+    </Wrapper>
+  )
 }
 
 export default Root
